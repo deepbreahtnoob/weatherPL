@@ -6,6 +6,7 @@
     <h1>Pogoda</h1>
   </div>
   <p class="lead">Temperatura w {{ $city }} wynosi {{ $temp }} stopni celsiusz</p>
+  <p class="lead">Dane pobrano w {{ $time }} ms</p>
 </div>
 @endif
 @if ($city == '')

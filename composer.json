@@ -6,6 +6,7 @@
   },
   "require": {
     "guzzlehttp/guzzle": "^6.2",
-    "jenssegers/blade": "^1.1"
+    "jenssegers/blade": "^1.1",
+    "symfony/stopwatch": "^3.2"
   }
 }

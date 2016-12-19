@@ -11,16 +11,45 @@ class CurrentWeather
     $this->apiKey = $apiKey;
     $this->http = $http;
   }
+ 
+  public function getTemperature($city) {
+   $filename = 'temp/'.$city.'.json';
 
-  public function getTemperature($city)
+
+   if (!file_exists($filename) or (time()-filemtime($filename) >= 120 )){
+     $rawData = $this->getTemperatureJson($city);
+   } else {
+      $rawData = $this->getTemperatureFromFile($city);
+   }
+   $temp = $this->decodeResponse($rawData);
+   return $temp;
+  }
+  private function getTemperatureJson($city)
   {
     $url = $this->buildUrl($city);
     $response = $this->http->request('GET', $url);
     $rawData = $response->getBody();
-    $data = json_decode($rawData, true);
-    $temp = $data['main']['temp'];
+    $this->storeJson($rawData, $city);
 
-    return $temp; 
+    return $rawData;
+  }
+  private function decodeResponse($rawData){
+     $data = json_decode($rawData, true);
+     $temp = $data['main']['temp'];
+
+     return $temp;
+
+  }
+  private function getTemperatureFromFile($n){
+    $nameJs = 'temp/'.$n.'.json';
+    echo "NAzwa pliku to: $nameJs \n";
+    $file = file_get_contents($nameJs, true);
+    return $file;
+  }
+  private function storeJson($response, $name){
+    $fp = fopen('temp/'.$name.'.json', 'w');
+    fwrite($fp, $response);
+    fclose($fp);
   }
 
   private function buildUrl($city)

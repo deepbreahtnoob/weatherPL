@@ -5,6 +5,7 @@
     <h1>Pogoda</h1>
   </div>
   <p class="lead">Temperatura w <?php echo e($city); ?> wynosi <?php echo e($temp); ?> stopni celsiusz</p>
+  <p class="lead">Dane pobrano w <?php echo e($time); ?> ms</p>
 </div>
 <?php endif; ?>
 <?php if($city == ''): ?>
