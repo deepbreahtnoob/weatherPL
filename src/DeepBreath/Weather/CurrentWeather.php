@@ -42,7 +42,6 @@ class CurrentWeather
   }
   private function getTemperatureFromFile($n){
     $nameJs = 'temp/'.$n.'.json';
-    echo "NAzwa pliku to: $nameJs \n";
     $file = file_get_contents($nameJs, true);
     return $file;
   }

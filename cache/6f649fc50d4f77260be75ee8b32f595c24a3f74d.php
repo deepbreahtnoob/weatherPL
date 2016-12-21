@@ -20,7 +20,7 @@
     <?php echo $__env->yieldContent('content'); ?>
     <footer class="footer">
       <div class="container">
-        <span class="text-muted">Deepbreathnoob</span>
+        <span class="text-muted small">Deepbreathnoob</span>
       </div>
     </footer>
   </body>
